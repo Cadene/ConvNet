@@ -20,7 +20,7 @@ im_ = im_ - net.normalization.averageImage;
 % output des couches:
 res = vl_simplenn(net, im_);
 
-layer = 6
+layer = 4
 nbImg = size(res(layer+1).x, 3)
 
 for i=1:nbImg
