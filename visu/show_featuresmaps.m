@@ -9,7 +9,7 @@ run /usr/local/matconvnet-1.0-beta15/matlab/vl_setupnn
 path = '/usr/local/imagenet/';
 net = load(strcat(path,'imagenet-vgg-m.mat'));
 
-% Charger et préparer l'image
+% Charger et préparer limage
 im = imread('peppers.png');
 %im = imread('pears.png');
 %im = imread('onion.png');
@@ -20,9 +20,10 @@ im_ = im_ - net.normalization.averageImage;
 % output des couches:
 res = vl_simplenn(net, im_);
 
-layer = 16
+layer = 6
+nbImg = size(res(layer+1).x, 3)
 
-for i=1:96
+for i=1:nbImg
     img = res(layer+1).x(:,:,i);
     img = (img / max(max(max(abs(img)))) + 1) / 2;
     imwrite(img, strcat('layer', int2str(layer) ,'/featmap_layer', int2str(layer), '_', int2str(i), '.png'));
